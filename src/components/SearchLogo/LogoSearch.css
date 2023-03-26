@@ -9,3 +9,23 @@
     border-radius: 10px;
     padding: 5px;
 }
+
+.search>input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.s-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: linear-gradient(106.23deg, #f99827, #f95f35 100%);
+    padding: 4px;
+    color: white;
+}
+
+.s-icon:hover{
+    cursor: pointer;
+}

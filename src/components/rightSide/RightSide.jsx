@@ -5,6 +5,7 @@ import Comment from "../../assets/img/comment.png";
 import { UilSetting } from "@iconscout/react-unicons";
 
 import React from 'react'
+import TrendCard from "../trendCard/TrendCard";
 
 const RightSide = () => {
   return (
@@ -15,6 +16,7 @@ const RightSide = () => {
             <img src={Noti} />
             <img src={Comment} />
         </div>
+        <TrendCard />
     </div>
   )
 }

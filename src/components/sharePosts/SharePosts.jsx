@@ -52,6 +52,7 @@ const SharePosts = () => {
               name='myImage'
               ref={imgRef}
               onChange={imgHandler}
+              accept='image/*'
               />
           </div>
         </div>

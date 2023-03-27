@@ -1,6 +1,6 @@
 import postPic1 from '../assets/img/postpic1.jpg'
 import postPic2 from '../assets/img/postpic2.jpg'
-import postPic3 from '../assets/img/postpic3.JPG'
+import postPic3 from '../assets/img/postpic3.jpg'
 
 
 export const postsData = [

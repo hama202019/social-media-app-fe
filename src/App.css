@@ -47,3 +47,7 @@
   background: transparent;
   border: 1px solid var(--orange);
 }
+
+::-webkit-scrollbar{
+  display: none;
+}

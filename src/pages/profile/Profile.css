@@ -3,10 +3,13 @@
     display: grid;
     grid-template-columns: 18rem auto 20rem;
     gap: 1rem;
+    height: 130vh;
 }
 
-.Profile-center{
+.profile-center{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
+    overflow: auto;
 }

@@ -57,7 +57,7 @@ const SharePosts = () => {
         </div>
           {img && (
             <div className="previewImg">
-              <UilTimes style={{cursor: 'pointer'}} onClick={()=>setImg(null)}/>
+              <UilTimes onClick={()=>setImg(null)}/>
               <img src={img.image} />
             </div>
           )}

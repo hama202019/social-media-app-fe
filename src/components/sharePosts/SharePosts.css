@@ -60,18 +60,18 @@
 }
 
 
-.previewImage{
+.previewImg{
     position: relative;
 }
 
-.previewImage>svg{
+.previewImg>svg{
     position: absolute;
     right: 1rem;
     top: 0.5rem;
     cursor: pointer;
 }
 
-.previewImage>img{
+.previewImg>img{
     width: 100%;
     max-height: 20rem;
     object-fit: cover;

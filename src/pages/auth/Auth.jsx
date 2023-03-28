@@ -2,6 +2,7 @@ import React from 'react'
 import './Auth.css'
 import Logo from '../../assets/img/logo.png'
 import SignupForm from '../../components/signupForm/SignupForm'
+import LoginForm from '../../components/loginForm/LoginForm'
 
 const Auth = () => {
   return (
@@ -13,7 +14,8 @@ const Auth = () => {
           <h4>Explore the ideas throughout the world</h4>
         </div>
       </div>
-      <SignupForm />
+      {/* <SignupForm /> */}
+      <LoginForm />
     </div>
   )
 }

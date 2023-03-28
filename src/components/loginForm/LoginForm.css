@@ -1,0 +1,36 @@
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: var(--cardColor);
+    padding: 0px 30px;
+}
+
+.LoginForm > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 10px 10px;
+}
+
+.LoginForm input {
+    border: none;
+    outline: none;
+    background-color: var(--inputColor);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.loginButton {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    height: 2rem;
+    width: 13rem;
+    align-self: flex-end;
+    margin: 10px;
+}

@@ -47,6 +47,7 @@
 
 .timesIcon {
     align-self: flex-end;
+    cursor: pointer;
 }
 
 .ProfileModal input {

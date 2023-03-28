@@ -1,13 +1,11 @@
 .ShareModal{
     width: 100%;
-    height: 100vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 4rem;
     align-items: center;
-    /* background-color: aquamarine; */
 }
 
 .shareModalContainer {
@@ -15,5 +13,5 @@
     width: 40rem;
     border-radius: 10px;
     height: 19rem;
-    margin: 14px auto;
+    margin: 1rem auto;
 }

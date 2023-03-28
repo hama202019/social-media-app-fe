@@ -7,8 +7,8 @@ const ShareModal = ({open, closeModal}) => {
   if(!open) return null
 
   return (
-    <div className="overlay">
-      <div className="shareModalContainer">
+    <div className="overlay" onClick={closeModal}>
+      <div className="shareModalContainer"  onClick={(e) => e.stopPropagation()}>
         <div className='ShareModal'>
           <UilTimes onClick={closeModal} className='timesIcon'/>
           <SharePosts />

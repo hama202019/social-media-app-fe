@@ -1,0 +1,27 @@
+.Auth {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    height: 100vh;
+}
+
+.Auth > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.a-left{
+    gap: 2rem;
+}
+  
+.a-left > img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.webName > h1{
+    color: var(--orange);
+}

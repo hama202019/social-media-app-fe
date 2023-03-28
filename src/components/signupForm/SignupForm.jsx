@@ -15,6 +15,7 @@ const SignupForm = () => {
             <input type="password" placeholder='password' />
             <input type="password" placeholder='confirm password' />
         </div>
+        <h6>Have an account? <span>Login</span> </h6>
         <button className='button signupButton'>Signup</button>
     </div>
   )

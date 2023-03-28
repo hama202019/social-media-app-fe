@@ -34,3 +34,7 @@
     align-self: flex-end;
     margin: 10px;
 }
+
+.LoginForm > h6 {
+    color: var(--gray);
+}

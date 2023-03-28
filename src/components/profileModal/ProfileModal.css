@@ -1,0 +1,66 @@
+.overlay {
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.formContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.ProfileModal > form > div {
+    display: flex;
+    gap: 1rem;
+    width: 90%;
+}
+
+.ProfileModal {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: var(--cardColor);
+    padding: 20px;
+    width: 70%;
+}
+
+.timesIcon {
+    align-self: flex-end;
+}
+
+.ProfileModal input {
+    border: none;
+    width: 100%;
+    outline: none;
+    background-color: rgb(156, 155, 155);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.saveInfoButton {
+    align-self: flex-end;
+    width: 8rem;
+    margin: 0px 3rem;
+    height: 2rem;
+}

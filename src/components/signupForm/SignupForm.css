@@ -36,3 +36,7 @@
     align-self: flex-end;
     margin: 10px;
 }
+
+.SignupForm > h6 {
+    color: var(--gray);
+}

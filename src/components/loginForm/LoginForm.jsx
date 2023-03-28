@@ -11,6 +11,7 @@ const LoginForm = () => {
         <div className="password">
             <input type="password" placeholder='password' />
         </div>
+        <h6>Don't have an account? <span>Signup</span> </h6>
         <button className='button loginButton'>Login</button>
     </div>
   )

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import './LoginForm.css'
+import * as authApi from '../../api/authRequests'
 
 const LoginForm = ({setIsSignUp}) => {
   const [data, setData] = useState({email: '', password: ''})
@@ -7,9 +8,14 @@ const LoginForm = ({setIsSignUp}) => {
   const changeHandler = e => {
     setData({...data, [e.target.name]: e.target.value})
   }
-  const submitHandler = (e) => {
+  const submitHandler = async e => {
     e.preventDefault()
-    console.log(data)
+    try {
+      const result = await authApi.logIn(data)
+    } catch (error) {
+      console.log(error.message)
+    }
+    console.log(result) 
   }
 
   return (

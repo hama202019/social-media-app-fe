@@ -16,10 +16,10 @@ const LoginForm = ({setIsSignUp}) => {
     <form className="LoginForm" onSubmit={submitHandler}>
         <h2>Login</h2>
         <div>
-            <input placeholder='email' type='email' name='email' onChange={changeHandler}/>
+            <input placeholder='email' type='email' name='email' onChange={changeHandler} value={data.email}/>
         </div>
         <div className="password">
-            <input type="password" placeholder='password' name='password' onChange={changeHandler}/>
+            <input type="password" placeholder='password' name='password' onChange={changeHandler} value={data.password}/>
         </div>
         <h6 onClick={setIsSignUp}>Don't have an account? <span>Signup</span> </h6>
         <button className='button loginButton'>Login</button>

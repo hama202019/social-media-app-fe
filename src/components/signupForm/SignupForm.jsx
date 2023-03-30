@@ -1,23 +1,41 @@
 import React from 'react'
+import { useState } from 'react'
 import './SignupForm.css'
+
 const SignupForm = ({setIsSignUp}) => {
+  const [data, setData] = useState({firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
+  const [equal, setEqual] = useState(true)
+
+  const changeHandler = e => {
+    setData({...data, [e.target.name]: e.target.value})
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    if(data.password !== data.confirmPassword) setEqual(false);
+    console.log(data)
+  }
+
   return (
-    <div className="SignupForm">
+    <form className="SignupForm" onSubmit={submitHandler}>
         <h2>Signup</h2>
         <div className="fullName">
-            <input type='text' placeholder='firstName' />
-            <input type='text' placeholder='lastName' />
+            <input type='text' placeholder='firstName' name='firstName' onChange={changeHandler}/>
+            <input type='text' placeholder='lastName' name='lastName' onChange={changeHandler}/>
         </div>
         <div>
-            <input placeholder='email' type='email' />
+            <input placeholder='email' type='email' name='email' onChange={changeHandler}/>
         </div>
         <div className="password">
-            <input type="password" placeholder='password' />
-            <input type="password" placeholder='confirm password' />
+            <input type="password" placeholder='password' name='password' onChange={changeHandler}/>
+            <input type="password" placeholder='confirm password' name='confirmPassword' onChange={changeHandler}/>
         </div>
+        <span style={{display: equal ? 'none' : 'block', color: 'red'}}>
+          The passwords should match each other!
+        </span>
         <h6 onClick={setIsSignUp}>Have an account? <span>Login</span> </h6>
-        <button className='button signupButton'>Signup</button>
-    </div>
+        <button className='button signupButton' >Signup</button>
+    </form>
   )
 }
 

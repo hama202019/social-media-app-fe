@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Auth.css'
 import Logo from '../../assets/img/logo.png'
 import SignupForm from '../../components/signupForm/SignupForm'
 import LoginForm from '../../components/loginForm/LoginForm'
 
 const Auth = () => {
+  const [isSignUp, setIsSignUp] = useState(false);
+
   return (
     <div className="Auth">
       <div className="a-left">
@@ -14,8 +16,7 @@ const Auth = () => {
           <h4>Explore the ideas throughout the world</h4>
         </div>
       </div>
-      {/* <SignupForm /> */}
-      <LoginForm />
+      {isSignUp ? <SignupForm setIsSignUp={() => setIsSignUp(false)}/> : <LoginForm setIsSignUp={() => setIsSignUp(true)}/>}
     </div>
   )
 }

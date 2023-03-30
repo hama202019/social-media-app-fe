@@ -1,6 +1,6 @@
 import React from 'react'
 import './SignupForm.css'
-const SignupForm = () => {
+const SignupForm = ({setIsSignUp}) => {
   return (
     <div className="SignupForm">
         <h2>Signup</h2>
@@ -15,7 +15,7 @@ const SignupForm = () => {
             <input type="password" placeholder='password' />
             <input type="password" placeholder='confirm password' />
         </div>
-        <h6>Have an account? <span>Login</span> </h6>
+        <h6 onClick={setIsSignUp}>Have an account? <span>Login</span> </h6>
         <button className='button signupButton'>Signup</button>
     </div>
   )

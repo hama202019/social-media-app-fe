@@ -1,7 +1,7 @@
 import React from 'react'
 import './LoginForm.css'
 
-const LoginForm = () => {
+const LoginForm = ({setIsSignUp}) => {
   return (
     <div className="LoginForm">
         <h2>Login</h2>
@@ -11,7 +11,7 @@ const LoginForm = () => {
         <div className="password">
             <input type="password" placeholder='password' />
         </div>
-        <h6>Don't have an account? <span>Signup</span> </h6>
+        <h6 onClick={setIsSignUp}>Don't have an account? <span>Signup</span> </h6>
         <button className='button loginButton'>Login</button>
     </div>
   )

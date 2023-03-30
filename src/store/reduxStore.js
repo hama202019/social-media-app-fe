@@ -1,5 +1,5 @@
 import {legacy_createStore} from 'redux'
-import authReducer from '../reducers/authReducer'
+import allReducers from '../reducers';
 
 function saveToLocalStorage(store) {
     try {
@@ -22,7 +22,7 @@ function loadFromLocalStorage() {
 
 const persistedState = loadFromLocalStorage();
 
-const store = createStore(reducers, persistedState);
+const store = legacy_createStore(allReducers, persistedState);
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
 

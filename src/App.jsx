@@ -4,6 +4,7 @@ import "./App.css"
 import Auth from "./pages/auth/Auth";
 import Home from "./pages/Home";
 import Profile from "./pages/profile/Profile";
+
 function App() {
   const user = useSelector(state => state.authReducer.authData)
 
@@ -13,8 +14,8 @@ function App() {
         <div className="blur" style={{top: '36%', left: '-8rem'}}></div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={user ? <Navigate to={'/home'}/> : <Navigate to="/auth" /> }/>
-            <Route path="/auth" element={user ? <Navigate to="home" /> : <Auth />} />
+            <Route path="/" element={user ? <Home /> : <Navigate to="/auth" /> }/>
+            <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
           </Routes>
         </BrowserRouter>
     </div>

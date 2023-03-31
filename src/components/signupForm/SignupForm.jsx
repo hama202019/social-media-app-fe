@@ -21,10 +21,10 @@ const SignupForm = ({setIsSignUp}) => {
     dispatch(authActions.sendAuthReq())
     try {
       const result = await authApi.signUp(data)
-      dispatch(authActions.authSuccess())
-      console.log(result)
+      dispatch(authActions.authSuccess(result.data))
     } catch (error) {
       dispatch(authActions.authFail())
+      console.log(error.response.data.error)
     }
   }
 

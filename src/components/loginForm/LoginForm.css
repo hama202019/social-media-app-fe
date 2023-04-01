@@ -38,3 +38,13 @@
 .LoginForm > h6 {
     color: var(--gray);
 }
+
+.loginButton:disabled {
+    background: var(--gray);
+}
+
+.loginButton:disabled:hover {
+    color: white;
+    border: none;
+    cursor: auto;
+}

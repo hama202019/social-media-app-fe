@@ -49,7 +49,7 @@ const SignupForm = ({setIsSignUp}) => {
           The passwords should match each other!
         </span>
         <h6 onClick={setIsSignUp}>Have an account? <span>Login</span> </h6>
-        <button className='button signupButton' disabled={loading}>Signup</button>
+        <button className='button signupButton' disabled={loading}>{loading ? "loading": "Signup"}</button>
     </form>
   )
 }

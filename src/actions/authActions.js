@@ -4,9 +4,14 @@ export const sendAuthReq = () => ({
 
 export const authSuccess = data => ({
   type: "AUTH_SUCCESS",
-  payload: data
+  payload: {
+    data
+  }
 })
 
-export const authFail = () => ({
-  type: "AUTH_FAIL"
+export const authFail = errMsg => ({
+  type: "AUTH_FAIL",
+  payload: {
+    errMsg
+  }
 })

@@ -37,6 +37,16 @@
     margin: 10px;
 }
 
+.signupButton:disabled {
+    background: var(--gray);
+}
+
+.signupButton:disabled:hover {
+    color: white;
+    border: none;
+    cursor: auto;
+}
+
 .SignupForm > h6 {
     color: var(--gray);
 }

@@ -10,6 +10,8 @@ const SignupForm = ({setIsSignUp}) => {
   const [equal, setEqual] = useState(true)
   const dispatch = useDispatch()
   const reqError = useSelector(state => state.authReducer.error)
+  const errMsg = useSelector(state => state.authReducer.errMsg)
+  const loading = useSelector(state => state.authReducer.loading)
 
   const changeHandler = e => {
     setData({...data, [e.target.name]: e.target.value})
@@ -17,21 +19,21 @@ const SignupForm = ({setIsSignUp}) => {
 
   const submitHandler = async e => {
     e.preventDefault()
-    if(data.password !== data.confirmPassword) setEqual(false);
+    if(data.password !== data.confirmPassword) return setEqual(false);
+    setEqual(true)
     dispatch(authActions.sendAuthReq())
     try {
       const result = await authApi.signUp(data)
       dispatch(authActions.authSuccess(result.data))
     } catch (error) {
-      dispatch(authActions.authFail())
-      console.log(error.response.data.error)
+      dispatch(authActions.authFail(error.response.data.error))
     }
   }
 
   return (
     <form className="SignupForm" onSubmit={submitHandler}>
         <h2>Signup</h2>
-        {reqError ? <p style={{color: 'red'}}>oops, something went wrong</p> : ''}
+        {reqError ? <p style={{color: 'red'}}>{errMsg}</p> : ''}
         <div className="fullName">
             <input type='text' placeholder='firstName' name='firstName' onChange={changeHandler} value={data.firstName}/>
             <input type='text' placeholder='lastName' name='lastName' onChange={changeHandler} value={data.lastName}/>
@@ -47,7 +49,7 @@ const SignupForm = ({setIsSignUp}) => {
           The passwords should match each other!
         </span>
         <h6 onClick={setIsSignUp}>Have an account? <span>Login</span> </h6>
-        <button className='button signupButton' >Signup</button>
+        <button className='button signupButton' disabled={loading}>Signup</button>
     </form>
   )
 }

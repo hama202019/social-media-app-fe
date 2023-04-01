@@ -15,3 +15,21 @@ export const retreivingFail = errMsg => ({
         errMsg
     }
 })
+
+export const startUploading = () => ({
+    type: "UPLOADING_START"
+})
+
+export const uploadingSuccess = data => ({
+    type: "UPLOADING_SUCCESS",
+    payload: {
+        data
+    }
+})
+
+export const uploadingFail = errMsg => ({
+    type: "UPLOADING_FAIL",
+    payload: {
+        errMsg
+    }
+})

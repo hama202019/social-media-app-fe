@@ -10,14 +10,12 @@ import './SharePosts.css'
 
 const SharePosts = () => {
   const [img, setImg] = useState(null)
-  const imgRef = useRef()
+  const imgInputRef = useRef()
   
   const imgHandler = (e) => {
     if(e.target.files && e.target.files[0]){
       const image = e.target.files[0]
-      setImg({
-        image: URL.createObjectURL(image)
-      })
+      setImg(image)
     }
   }
 
@@ -28,7 +26,7 @@ const SharePosts = () => {
         <input type="text" placeholder="What's happening" />
         <div className="postOptions">
           <div className="option" style={{ color: "var(--photo)" }}
-          onClick={() => imgRef.current.click()}
+          onClick={() => imgInputRef.current.click()}
           >
             <UilScenery />
             Photo
@@ -36,11 +34,11 @@ const SharePosts = () => {
           <div className="option" style={{ color: "var(--video)" }}>
             <UilPlayCircle />
             Video
-          </div>{" "}
+          </div>
           <div className="option" style={{ color: "var(--location)" }}>
             <UilLocationPoint />
             Location
-          </div>{" "}
+          </div>
           <div className="option" style={{ color: "var(--shedule)" }}>
             <UilSchedule />
             Shedule
@@ -50,7 +48,7 @@ const SharePosts = () => {
             <input 
               type="file" 
               name='myImage'
-              ref={imgRef}
+              ref={imgInputRef}
               onChange={imgHandler}
               accept='image/*'
               />
@@ -59,7 +57,7 @@ const SharePosts = () => {
           {img && (
             <div className="previewImg">
               <UilTimes onClick={()=>setImg(null)}/>
-              <img src={img.image} />
+              <img src={img} />
             </div>
           )}
       </div>

@@ -9,9 +9,7 @@ const SignupForm = ({setIsSignUp}) => {
   const [data, setData] = useState({firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
   const [equal, setEqual] = useState(true)
   const dispatch = useDispatch()
-  const reqError = useSelector(state => state.authReducer.error)
-  const errMsg = useSelector(state => state.authReducer.errMsg)
-  const loading = useSelector(state => state.authReducer.loading)
+  const {errMsg, error, loading} = useSelector(state => state.authReducer)
 
   const changeHandler = e => {
     setData({...data, [e.target.name]: e.target.value})
@@ -25,15 +23,15 @@ const SignupForm = ({setIsSignUp}) => {
     try {
       const result = await authApi.signUp(data)
       dispatch(authActions.authSuccess(result.data))
-    } catch (error) {
-      dispatch(authActions.authFail(error.response.data.error))
+    } catch (e) {
+      dispatch(authActions.authFail(e.response.data.error))
     }
   }
 
   return (
     <form className="SignupForm" onSubmit={submitHandler}>
         <h2>Signup</h2>
-        {reqError ? <p style={{color: 'red'}}>{errMsg}</p> : ''}
+        {error ? <p style={{color: 'red'}}>{errMsg}</p> : ''}
         <div className="fullName">
             <input type='text' placeholder='firstName' name='firstName' onChange={changeHandler} value={data.firstName}/>
             <input type='text' placeholder='lastName' name='lastName' onChange={changeHandler} value={data.lastName}/>

@@ -7,9 +7,6 @@ import * as authActions from '../../actions/authActions'
 const LoginForm = ({setIsSignUp}) => {
   const [data, setData] = useState({email: '', password: ''})
   const dispatch = useDispatch()
-  // const errMsg = useSelector(state => state.authReducer.errMsg)
-  // const reqError = useSelector(state => state.authReducer.error)
-  // const loading = useSelector(state => state.authReducer.loading)
   const {errMsg, error, loading} = useSelector(state => state.authReducer)
   console.log(errMsg, error, loading)
   const changeHandler = e => {

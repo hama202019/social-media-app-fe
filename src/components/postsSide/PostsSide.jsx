@@ -7,7 +7,7 @@ const PostsSide = () => {
   return (
     <div className='PostsSide'>
         <SharePosts />
-        <Posts />
+        <Posts profilePage={false}/>
     </div>
   )
 }

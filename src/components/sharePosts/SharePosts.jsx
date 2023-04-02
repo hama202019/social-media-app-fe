@@ -35,10 +35,11 @@ const SharePosts = () => {
       const uploadTask = uploadBytesResumable(newImgRef, img).then( snapShot => {
         getDownloadURL(newImgRef).then( async url => {
           const newPost = {userId : _id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef), userName: `${firstName} ${lastName}`}
-          console.log(newPost)
           try {
             const post = await postsAPI.post(newPost)
             dispatch(postsActions.uploadingSuccess(post.data))
+            setImg(null)
+            desc.current.value = ''
           } catch (e) {
             if(e.response)
               dispatch(postsActions.uploadingFail(e.response.data.error))
@@ -51,6 +52,7 @@ const SharePosts = () => {
       try {
         const post = await postsAPI.post({userId: _id, desc: desc.current.value, userName: `${firstName} ${lastName}`})
         dispatch(postsActions.uploadingSuccess(post))
+        desc.current.value = ''
       } catch (e) {
         if(e.response)
           dispatch(postsActions.uploadingFail(e.response.data.error))

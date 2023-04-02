@@ -28,13 +28,13 @@ const SharePosts = () => {
   }
   const handleUpload = async e => {
     e.preventDefault();
-    if(!desc.current.value) return {error: ""}
+    if(!desc.current.value) return;
     if(img){
       const newImgRef = ref(storage, `images/${user._id}${img.name}`)
       dispatch(postsActions.startUploading())
       const uploadTask = uploadBytesResumable(newImgRef, img).then( snapShot => {
         getDownloadURL(newImgRef).then( async url => {
-          const newPost = {userId : _id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef), userName: `${user.firstName} ${user.lastName}`}
+          const newPost = {userId : user._id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef), userName: `${user.firstName} ${user.lastName}`}
           try {
             const post = await postsAPI.post(newPost)
             dispatch(postsActions.uploadingSuccess(post.data))
@@ -46,12 +46,11 @@ const SharePosts = () => {
           }
         })
       })
-      setUpload(uploadTask)
     } else {
       dispatch(postsActions.startUploading())
       try {
-        const post = await postsAPI.post({userId: _id, desc: desc.current.value, userName: `${firstName} ${lastName}`})
-        dispatch(postsActions.uploadingSuccess(post))
+        const post = await postsAPI.post({userId: user._id, desc: desc.current.value, userName: `${firstName} ${lastName}`})
+        dispatch(postsActions.uploadingSuccess(post.data))
         desc.current.value = ''
       } catch (e) {
         if(e.response)

@@ -18,7 +18,7 @@ const SharePosts = () => {
   const dispatch = useDispatch()
   const desc = useRef()
   const [upload, setUpload] = useState(null)
-  const {_id} = useSelector(state => state.authReducer.authData)
+  const {_id, firstName, lastName} = useSelector(state => state.authReducer.authData)
 
   const imgHandler = (e) => {
     if(e.target.files && e.target.files[0]){
@@ -34,11 +34,11 @@ const SharePosts = () => {
       dispatch(postsActions.startUploading())
       const uploadTask = uploadBytesResumable(newImgRef, img).then( snapShot => {
         getDownloadURL(newImgRef).then( async url => {
-          const newPost = {userId : _id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef)}
+          const newPost = {userId : _id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef), userName: `${firstName} ${lastName}`}
           console.log(newPost)
           try {
             const post = await postsAPI.post(newPost)
-            dispatch(postsActions.uploadingSuccess(post))
+            dispatch(postsActions.uploadingSuccess(post.data))
           } catch (e) {
             if(e.response)
               dispatch(postsActions.uploadingFail(e.response.data.error))
@@ -49,7 +49,7 @@ const SharePosts = () => {
     } else {
       dispatch(postsActions.startUploading())
       try {
-        const post = await postsAPI.post({userId: _id, desc: desc.current.value})
+        const post = await postsAPI.post({userId: _id, desc: desc.current.value, userName: `${firstName} ${lastName}`})
         dispatch(postsActions.uploadingSuccess(post))
       } catch (e) {
         if(e.response)

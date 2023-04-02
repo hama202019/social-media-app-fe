@@ -8,15 +8,15 @@ import './Post.css'
 const Post = ({data}) => {
   return (
     <div className='Post'>
-        <img src={data.img} />
+        {data.image && <img src={data.image} />}
         <div className="postReact">
           <img src={data.liked ? Heart : NotLike} />
           <img src={Comment} />
           <img src={Share} />
         </div>
-        <span style={{color: 'var(--gray)', fontSize: '12px'}}>{data.likes} likes</span>
+        <span style={{color: 'var(--gray)', fontSize: '12px'}}>{data.likes.length} likes</span>
         <div className="details">
-          <span><b>{data.name}</b></span>
+          <span><b>{data.userName + '\t'}</b></span>
           <span>{data.desc}</span>
         </div>
     </div>

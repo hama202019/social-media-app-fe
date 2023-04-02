@@ -86,7 +86,11 @@
 .ProfileCard>span {
     font-weight: bold;
     align-self: center;
-    color: orange;
     margin-bottom: 1rem;
     cursor: pointer;
+}
+
+.ProfileCard>span>a {
+    color: var(--orange);
+    text-decoration: none;
 }

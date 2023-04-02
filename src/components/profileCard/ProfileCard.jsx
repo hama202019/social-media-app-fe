@@ -2,9 +2,9 @@ import React from 'react'
 import Cover from '../../assets/img/cover.jpg'
 import Profile from '../../assets/img/profileImg.jpg'
 import './ProfileCard.css'
+import { Link, Navigate } from 'react-router-dom'
 
-const ProfileCard = () => {
-    const profilePage = true
+const ProfileCard = ({profilePage}) => {
 
     return (
     <div className='ProfileCard'>
@@ -39,7 +39,7 @@ const ProfileCard = () => {
             <hr />
         </div>
         {profilePage ? '' : (<span>
-            Profile
+            <Link to={'/profile'}> Profile </Link>
         </span>)}
     </div>
   )

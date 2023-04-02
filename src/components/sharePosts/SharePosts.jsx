@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import ProfileImage from '../../assets/img/profileImg.jpg'
+import Profile from '../../assets/img/profileImgPlaceHolder.png'
 import { UilScenery } from "@iconscout/react-unicons";
 import { UilPlayCircle } from "@iconscout/react-unicons";
 import { UilLocationPoint } from "@iconscout/react-unicons";
@@ -18,7 +18,7 @@ const SharePosts = () => {
   const dispatch = useDispatch()
   const desc = useRef()
   const [upload, setUpload] = useState(null)
-  const {_id, firstName, lastName} = useSelector(state => state.authReducer.authData)
+  const user = useSelector(state => state.authReducer.authData)
 
   const imgHandler = (e) => {
     if(e.target.files && e.target.files[0]){
@@ -30,11 +30,11 @@ const SharePosts = () => {
     e.preventDefault();
     if(!desc.current.value) return {error: ""}
     if(img){
-      const newImgRef = ref(storage, `images/${_id}${img.name}`)
+      const newImgRef = ref(storage, `images/${user._id}${img.name}`)
       dispatch(postsActions.startUploading())
       const uploadTask = uploadBytesResumable(newImgRef, img).then( snapShot => {
         getDownloadURL(newImgRef).then( async url => {
-          const newPost = {userId : _id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef), userName: `${firstName} ${lastName}`}
+          const newPost = {userId : _id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef), userName: `${user.firstName} ${user.lastName}`}
           try {
             const post = await postsAPI.post(newPost)
             dispatch(postsActions.uploadingSuccess(post.data))
@@ -62,7 +62,7 @@ const SharePosts = () => {
 
   return (
     <div className='SharePost'>
-      <img src={ProfileImage} alt="" />
+      <img src={user.profilePicture || Profile} alt="" />
       <div>
         <input type="text" ref={desc} placeholder="What's happening" required/>
         <div className="postOptions">

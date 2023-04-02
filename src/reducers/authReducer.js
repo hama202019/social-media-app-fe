@@ -6,6 +6,8 @@ const authReducer = (state = { authData: null, loading: false, error: false, err
             return {loading: false, error: false, authData: action.payload.data, errMsg: ''}
         case "AUTH_FAIL":
             return {...state, error: true, loading: false, errMsg: action.payload.errMsg }
+        case "Logout":
+            return null
         default:
             return state
     }

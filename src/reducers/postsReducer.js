@@ -1,4 +1,4 @@
-const reducer = (state = { postsData: null, loading: false, error: false, errMsg: '' }, action) => {
+const reducer = (state = { postsData: [], loading: false, error: false, errMsg: '' }, action) => {
     switch(action.type) {
         case "RETREIVING_START":
             return {...state, loading: true, error: false, errMsg: ''}
@@ -9,7 +9,7 @@ const reducer = (state = { postsData: null, loading: false, error: false, errMsg
         case "UPLOADING_START":
                 return {...state, errMsg: '', error: false, loading: true}
         case "UPLOADING_SUCCESS":
-            return {loading: false, errMsg: '', error: false, postsData: [action.payload.data, state.postsData]}
+            return {loading: false, errMsg: '', error: false, postsData: [action.payload.data, ...state.postsData]}
         case "UPLOADING_FAIL":
             return {...state, errMsg: action.payload.errMsg, error: true, loading: false}
         default:

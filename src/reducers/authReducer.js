@@ -8,6 +8,12 @@ const authReducer = (state = { authData: null, loading: false, error: false, err
             return {...state, error: true, loading: false, errMsg: action.payload.errMsg }
         case "Logout":
             return null
+        case "UPDATING_START":
+            return {...state, loading: true, error: false, errMsg: ''}
+        case "UPDATING_SUCCESS":
+            return {loading: false, error: false, authData: action.payload.data, errMsg: ''}
+        case "UPDATING_FAIL":
+            return {...state, error: true, loading: false, errMsg: action.payload.errMsg }
         default:
             return state
     }

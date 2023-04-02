@@ -2,12 +2,18 @@ import React, { useState } from 'react'
 import './InfoCard.css'
 import { UilPen } from "@iconscout/react-unicons";
 import ProfileModal from '../profileModal/ProfileModal';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {logout} from '../../actions/authActions'
 
 const InfoCard = () => {
   const [openModal, setOpenModal] = useState(false)
   const user = useSelector(state => state.authReducer.authData)
-
+  const dispatch = useDispatch()
+  const handleLogout = () => {
+    dispatch(logout())
+    localStorage.clear()
+    location.reload()
+  }
   return (
     <div className="InfoCard">
       <div className="infoHead">
@@ -43,7 +49,7 @@ const InfoCard = () => {
         <span>{user.worksAt || ''}</span>
       </div>
 
-      <button className="button logout-button">Logout</button>
+      <button className="button logout-button" onClick={handleLogout}>Logout</button>
     </div>
   )
 }

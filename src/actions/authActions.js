@@ -15,3 +15,7 @@ export const authFail = errMsg => ({
     errMsg
   }
 })
+
+export const logout = () => ({
+  type: "LOGOUT"
+})

@@ -26,7 +26,6 @@ const Posts = ({profilePage}) => {
   let {postsData} = useSelector(state => state.postsReducer)
   if(profilePage) {
     postsData = postsData.filter(post => post.userId === _id)
-    console.log(1000)
   }
 
   return (

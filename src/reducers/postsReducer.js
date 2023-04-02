@@ -3,7 +3,7 @@ const reducer = (state = { postsData: [], loading: false, error: false, errMsg: 
         case "RETREIVING_START":
             return {...state, loading: true, error: false, errMsg: ''}
         case "RETRIEVING_SUCCESS":
-            return {...state, eloading: false, errMsg: '', error: false, postsData: action.payload.data || state.postsData, myOwnPosts: action.payload.myData || state.myOwnPosts}
+            return {...state, eloading: false, errMsg: '', error: false, postsData: action.payload.data }
         case "RETRIEVING_FAIL":
             return {...state, errMsg: action.payload.errMsg, error: true, loading: false}
         case "UPLOADING_START":

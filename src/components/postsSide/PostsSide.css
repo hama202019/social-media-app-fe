@@ -1,7 +1,7 @@
 .PostsSide {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 120vh;
     overflow: auto;
     gap: 1rem;
 }

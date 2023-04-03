@@ -12,6 +12,6 @@
     background-color: var(--cardColor);
     width: 40rem;
     border-radius: 10px;
-    height: 19rem;
+    height: auto;
     margin: 1rem auto;
 }

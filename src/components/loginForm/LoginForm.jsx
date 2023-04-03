@@ -8,14 +8,12 @@ const LoginForm = ({setIsSignUp}) => {
   const [data, setData] = useState({email: '', password: ''})
   const dispatch = useDispatch()
   const {errMsg, error, loading} = useSelector(state => state.authReducer)
-  console.log(errMsg, error, loading)
   const changeHandler = e => {
     setData({...data, [e.target.name]: e.target.value})
   }
   const submitHandler = async e => {
     e.preventDefault()
     dispatch(authActions.sendAuthReq())
-    console.log(data)
     try {
       const result = await authApi.logIn(data)
       dispatch(authActions.authSuccess(result.data))

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import Profile from '../../assets/img/profileImgPlaceHolder.png'
-import { followUser } from '../../api/userRequests'
+import { followUser, unfollowUser } from '../../api/userRequests'
 import { useDispatch, useSelector } from 'react-redux'
 import { updatingFail, updatingSuccess } from '../../actions/userActions'
 
@@ -12,13 +12,24 @@ const UserCard = ({classes, user}) => {
     const handleFollow = () => {   
         const followThisUser = async () => {
             try {
-                const {data} = await followUser(user._id, _id)
+                const {data} = await followUser(user._id, {_id})
                 dispatch(updatingSuccess(data))
             } catch (error) {
                 dispatch(updatingFail(error.response.data.message))
             }
         }
         followThisUser()
+    }
+    const handleUnFollow = () => {
+        const unfollowThisUser = async () => {
+            try {
+                const {data} = await unfollowUser(user._id, {_id})
+                dispatch(updatingSuccess(data))
+            } catch (error) {
+                dispatch(updatingFail(error.response.data.message))
+            }
+        }
+        unfollowThisUser()
     }
   return (
     <div className={classes.user}>
@@ -29,7 +40,7 @@ const UserCard = ({classes, user}) => {
                 <span>{user.email}</span>
             </div>
         </div>
-        <button className='button' onClick={handleFollow}>{following.includes(user._id) ? 'unFollow' : 'follow'}</button>
+        <button className='button' onClick={following.includes(user._id) ? handleUnFollow : handleFollow }>{following.includes(user._id) ? 'unFollow' : 'follow'}</button>
     </div>
   )
 }

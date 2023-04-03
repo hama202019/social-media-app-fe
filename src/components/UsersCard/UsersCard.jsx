@@ -14,7 +14,7 @@ const UsersCard = () => {
         }
         getUsers()
     }, [])
-    console.log(usersData)
+    
   return (
     <div className={classes.UsersCard}>
         <h3> People you may know </h3>

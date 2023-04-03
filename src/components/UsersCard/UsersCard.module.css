@@ -1,4 +1,4 @@
-.FollowersCard {
+.UsersCard {
     width: 100%;
     border-radius: 0.7rem;
     display: flex;
@@ -7,18 +7,18 @@
     font-size: 13px;
 }
 
-.follower {
+.user {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.follower>div {
+.user>div {
     display: flex;
     gap: 10px;
 }
 
-.followerImg {
+.userImg {
     width: 3.2rem;
     height: 3.2rem;
     border-radius: 50%;
@@ -35,7 +35,7 @@
     font-weight: bold;
 }
 
-.follower button {
+.user button {
     height: 2rem;
     padding-left: 20px;
     padding-right: 20px;

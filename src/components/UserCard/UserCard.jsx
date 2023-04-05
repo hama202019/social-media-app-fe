@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react'
 import Profile from '../../assets/img/profileImgPlaceHolder.png'
 import { followUser, unfollowUser } from '../../api/userRequests'
 import { useDispatch, useSelector } from 'react-redux'

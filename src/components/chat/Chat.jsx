@@ -1,11 +1,16 @@
 import React from 'react'
 import Profile from '../../assets/img/profileImgPlaceHolder.png'
+import './Chat.css'
 
 const Chat = ({chat}) => {
+  const online = 1
   return (
     <div className='chat'>
-        <img src={chat.profilePicture || Profile} />
-        <h3>{chat.firstName + ' ' + chat.lastName}</h3>
+        <div>
+        {online && <div className="onlineDot"></div>}
+        <img src={chat.otherUserProfilePicture || Profile} />
+        <h5>{chat.otherUserfirstName + ' ' + chat.otherUserlastName}</h5>
+        </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-export const retrievingSuccess = data => ({
-    type: "RETRIEVING_SUCCESS",
+export const retrievingChatsSuccess = data => ({
+    type: "RETRIEVING_CHATS_SUCCESS",
     data
 })

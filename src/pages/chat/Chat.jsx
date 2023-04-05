@@ -5,6 +5,7 @@ import Chats from '../../components/chats/Chats'
 import { getUserChats } from '../../api/chatRequests'
 import { useDispatch, useSelector } from 'react-redux'
 import {retrievingChatsSuccess} from '../../actions/chatActions'
+import NavIcons from '../../components/navIcons/NavIcons'
 
 const Chat = () => {
   const {_id} = useSelector(state => state.authReducer.authData)
@@ -30,7 +31,9 @@ const Chat = () => {
             </div>
         </div>
         <div className="rightSideChat">
-          Right
+          <div style={{width: '20rem', alignSelf: 'flex-end'}}>
+            <NavIcons className='navIcons'/>
+          </div>
         </div>
     </div>
   )

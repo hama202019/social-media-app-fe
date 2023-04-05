@@ -4,6 +4,7 @@ import "./App.css"
 import Auth from "./pages/auth/Auth";
 import Home from "./pages/Home";
 import Profile from "./pages/profile/Profile";
+import Chat from "./pages/chat/Chat";
 
 function App() {
   const user = useSelector(state => state.authReducer.authData)
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={user ? <Home /> : <Navigate to="/auth" /> }/>
             <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
             <Route path="/profile" element ={user ? <Profile /> : <Navigate to="/auth" />} />
+            <Route path="/chat" element={user ? <Chat /> : <Navigate to="/auth" />} />
           </Routes>
         </BrowserRouter>
     </div>

@@ -2,21 +2,38 @@ import React, { useEffect, useState } from 'react'
 import Profile from '../../assets/img/profileImgPlaceHolder.png'
 import './ChatBox.css'
 import { useSelector } from 'react-redux'
-import { fetchMessages } from '../../api/messageRequests'
+import { fetchMessages, postMessage } from '../../api/messageRequests'
 import {format} from 'timeago.js'
 import Input from 'react-input-emoji'
 
-const ChatBox = ({currentChat}) => {
-    const [messagesData, setMessagesData] = useState([])
-    const {authData} = useSelector(state => state.authReducer)
 
+const ChatBox = ({currentChat, socket}) => {
+    const [messagesData, setMessagesData] = useState([])
+    const [newMessage, setNewMessage] = useState('')
+    // socket.on('receiveMessage', async message => {
+    //     const {data} = await fetchMessages(currentChat?.chatId)
+    //     setMessagesData(data)
+    //     console.log(message)
+    // })
+    const {authData} = useSelector(state => state.authReducer)
+    const [counter, setCounter] = useState(0)
+
+    socket.on('receiveMessage', () => setCounter(counter + 1))
     useEffect(() => {
         const getMessages = async () => {
+            console.log('yalla')
             const {data} = await fetchMessages(currentChat?.chatId)
             setMessagesData(data)
         }
         getMessages()
-    }, [currentChat])
+    }, [counter, currentChat])
+
+    const handlePostMessage = async e => {
+        e.preventDefault()
+        await postMessage(currentChat?.chatId, authData._id, newMessage)
+        socket.emit('sendMessage', {chatId: currentChat?.chatId, newMessage});
+        setNewMessage('')
+    }
   return (
     <div className="ChatBox">
         <div className="profile">
@@ -33,8 +50,11 @@ const ChatBox = ({currentChat}) => {
             })}
         </div>
         <div className="inputBox">
-            <Input />
-            <button className='button'>Send</button>
+            <Input
+                value={newMessage} 
+                onChange={setNewMessage}
+            />
+            <button className='button' onClick={handlePostMessage}>Send</button>
         </div>
     </div>
   )

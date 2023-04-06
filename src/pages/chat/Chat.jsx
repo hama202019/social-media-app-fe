@@ -7,12 +7,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import {retrievingChatsSuccess} from '../../actions/chatActions'
 import NavIcons from '../../components/navIcons/NavIcons'
 import ChatBox from '../../components/chatBox/ChatBox'
+import {io} from 'socket.io-client'
 
 const Chat = () => {
   const {_id} = useSelector(state => state.authReducer.authData)
   const dispatch = useDispatch()
   const [currentChat, setCurrentChat] = useState(null)
-
+  const socket = io("http://localhost:4000");
+  const joinRoom = chatId => {
+    socket.emit('joinRoom', chatId);
+  }
   useEffect(() => {
     const fetchData = async () => {
       const {data} = await getUserChats(_id)
@@ -28,7 +32,7 @@ const Chat = () => {
             <div className="chats">
                 <h2>Chats</h2>
                 <div className="chatsList">
-                  <Chats setCurrentChat={setCurrentChat}/>
+                  <Chats setCurrentChat={setCurrentChat} joinRoom={joinRoom} />
                 </div>
             </div>
         </div>
@@ -36,7 +40,7 @@ const Chat = () => {
           <div style={{width: '20rem', alignSelf: 'flex-end'}}>
             <NavIcons className='navIcons'/>
           </div>
-          <ChatBox currentChat={currentChat}/>
+          <ChatBox socket={socket} currentChat={currentChat}/>
         </div>
     </div>
   )

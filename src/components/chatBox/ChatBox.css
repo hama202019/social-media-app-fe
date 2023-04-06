@@ -1,0 +1,62 @@
+.ChatBox {
+    background: var(--cardColor);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem .5rem;
+    gap: 1rem;
+}
+
+.chatProfilePicture {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+}
+
+.profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+}
+
+.messages {
+    height: 53.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    overflow-y: scroll;
+}
+
+.myMessage {
+    padding: 0px 1px;
+    border-radius: 5px;
+    background: linear-gradient(98.63deg, #24e4f0 0%, #358ff9 100%);
+    align-self: flex-end;
+}
+
+.hisMessage {
+    padding: 0px 1px;
+    border-radius: 5px;
+    background: var(--buttonBg);
+    align-self: flex-start;
+}
+.messages>div {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.messages>div>span:nth-of-type(2){
+    font-size: 12px;
+}
+
+.inputBox {
+   display: flex;
+   gap: .2rem;
+   align-items: center; 
+}
+
+.inputBox button {
+    height: 70%;
+    padding: 0 15px;
+}

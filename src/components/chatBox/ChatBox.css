@@ -3,8 +3,9 @@
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 1rem .5rem;
-    gap: 1rem;
+    height: 80vh;
 }
 
 .chatProfilePicture {
@@ -53,7 +54,7 @@
 .inputBox {
    display: flex;
    gap: .2rem;
-   align-items: center; 
+   align-items: center;
 }
 
 .inputBox button {

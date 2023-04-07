@@ -8,8 +8,8 @@ const Chat = ({chat, onClick}) => {
     <div className='chat' onClick={onClick}>
         <div>
         {online && <div className="onlineDot"></div>}
-        <img src={chat?.otherUserProfilePicture || Profile} />
-        <h5>{chat?.otherUserfirstName + ' ' + chat?.otherUserlastName}</h5>
+        <img src={chat?.profilePicture || Profile} />
+        <h5>{chat?.firstName + ' ' + chat?.lastName}</h5>
         </div>
     </div>
   )

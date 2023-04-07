@@ -8,9 +8,15 @@ import UsersCard from '../../components/UsersCard/UsersCard'
 import './User.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Posts from '../../components/posts/Posts'
+import ChatBox from '../../components/chatBox/ChatBox'
+import { io } from 'socket.io-client'
+import { findChat, getUserChats } from '../../api/chatRequests'
+import { retrievingChatsSuccess } from '../../actions/chatActions'
+import NavIcons from '../../components/navIcons/NavIcons'
 
 const User = ({user}) => {
     const {userID} = useParams()
+    const [userChat, setUserChat] = useState(null)
     const {following, _id} = useSelector(state => state.authReducer.authData)
     const [userData, setUserData] = useState({})
     useEffect(() => {
@@ -21,6 +27,22 @@ const User = ({user}) => {
         getUserData(userID)
     }, [])
     const dispatch = useDispatch()
+
+    const socket = io("http://localhost:4000");
+    const joinRoom = chatId => {
+        socket.emit('joinRoom', chatId);
+    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const {data} = await getUserChats(_id)
+            dispatch(retrievingChatsSuccess(data))
+            const userChatData = await findChat(_id, userID)
+            setUserChat({chatId: userChatData.data._id})
+            joinRoom(userChat, "asdfncasn")
+        }
+        fetchData()
+    }, [])
+
     const handleFollow = () => {   
         const followThisUser = async () => {
             try {
@@ -86,7 +108,11 @@ const User = ({user}) => {
                             <span>{userData.about || ""}</span>
                         </div>
                     </div>
-                    <Posts profilePage={false} id={userID._id}/>
+                    <Posts profilePage={false} id={userID}/>
+                </div>
+                <div className='messageUser'>
+                    <NavIcons />
+                    <ChatBox currentChat={{...userData, ...userChat}} socket={socket}/>
                 </div>
             </div>
         )}

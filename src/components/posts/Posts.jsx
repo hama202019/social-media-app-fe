@@ -31,7 +31,7 @@ const Posts = ({profilePage, id}) => {
     <div className="Posts">
         {postsData.length ? 
         postsData.map( post => {
-            return <Post key={post.id} data={post} />
+            return <Post key={post._id} data={post} />
         }) : <h1 style={{color: 'var(--gray)', display: 'flex', justifyContent: "center", alignItems: "center", marginTop: '100px'}}>{profilePage? "Your": "The"} posts will be shown here</h1>
       }
     </div>

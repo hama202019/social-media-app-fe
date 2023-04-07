@@ -5,19 +5,22 @@ import { useSelector } from 'react-redux'
 import { fetchMessages, postMessage } from '../../api/messageRequests'
 import {format} from 'timeago.js'
 import Input from 'react-input-emoji'
+import { io } from 'socket.io-client'
 
-
-const ChatBox = ({currentChat, socket}) => {
+const ChatBox = ({currentChat}) => {
     const [messagesData, setMessagesData] = useState([])
     const [newMessage, setNewMessage] = useState('')
-    
+    const socket = io("http://localhost:4000");
     const {authData} = useSelector(state => state.authReducer)
     const [counter, setCounter] = useState(0)
-
+    const joinRoom = chatId => {
+        socket.emit('joinRoom', chatId);
+    }
     socket.on('receiveMessage', () => setCounter(counter + 1))
     useEffect(() => {
         const getMessages = async () => {
-            console.log('yalla')
+            joinRoom(currentChat?.chatId)
+            console.log(currentChat?.chatId)
             const {data} = await fetchMessages(currentChat?.chatId)
             setMessagesData(data)
         }
@@ -33,8 +36,8 @@ const ChatBox = ({currentChat, socket}) => {
   return (
     <div className="ChatBox">
         <div className="profile">
-            <img src={currentChat?.otherUserProfilePicture || Profile} className='chatProfilePicture' />
-            <h4>{(currentChat?.otherUserfirstName || '') + ' ' + (currentChat?.otherUserlastName || '')}</h4>
+            <img src={currentChat?.profilePicture || Profile} className='chatProfilePicture' />
+            <h4>{(currentChat?.firstName || '') + ' ' + (currentChat?.lastName || '')}</h4>
         </div>
         <hr style={{width: '100%', fontWeight: 'lighter'}}/>
         <div className="messages">

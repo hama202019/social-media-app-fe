@@ -11,7 +11,6 @@ const Chats = ({setCurrentChat, joinRoom}) => {
         {chatsData.map(chat => {
             return <Chat chat={chat} key={chat.chatId} onClick={() => {
               setCurrentChat(chat)
-              joinRoom(chat.chatId)
             }}/>
         })}
     </div>

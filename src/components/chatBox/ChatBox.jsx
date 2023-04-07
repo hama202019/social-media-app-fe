@@ -10,11 +10,7 @@ import Input from 'react-input-emoji'
 const ChatBox = ({currentChat, socket}) => {
     const [messagesData, setMessagesData] = useState([])
     const [newMessage, setNewMessage] = useState('')
-    // socket.on('receiveMessage', async message => {
-    //     const {data} = await fetchMessages(currentChat?.chatId)
-    //     setMessagesData(data)
-    //     console.log(message)
-    // })
+    
     const {authData} = useSelector(state => state.authReducer)
     const [counter, setCounter] = useState(0)
 

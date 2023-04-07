@@ -1,6 +1,6 @@
 export const trendsData= [
     {
-      name: "Minions",
+      name: "World Cup 2022",
       shares: 97,
     },
     {
@@ -8,7 +8,7 @@ export const trendsData= [
       shares: 80.5,
     },
     {
-      name: "Zainkeepscode",
+      name: "GithubCopilot",
       shares: 75.5,
     },
     {

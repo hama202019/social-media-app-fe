@@ -6,15 +6,14 @@ import Post from '../post/Post'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
-const Posts = ({profilePage}) => {
+const Posts = ({profilePage, id}) => {
   
-  const {_id} = useSelector(state => state.authReducer.authData)
   const dispatch = useDispatch()
   useEffect(() => {
     const getData = async () => {
       dispatch(postsActions.startRetrievine())
       try {
-        const posts = await postsAPI.getTimelinePosts(_id)
+        const posts = await postsAPI.getTimelinePosts(id)
         dispatch(postsActions.retreivingSuccess(posts.data))
       } catch (e) {
         if(e.response)
@@ -25,14 +24,14 @@ const Posts = ({profilePage}) => {
   }, [])
   let {postsData} = useSelector(state => state.postsReducer)
   if(profilePage) {
-    postsData = postsData.filter(post => post.userId === _id)
+    postsData = postsData.filter(post => post.userId === id)
   }
 
   return (
     <div className="Posts">
         {postsData.length ? 
         postsData.map( post => {
-            return <Post key={post._id} data={post} />
+            return <Post key={post.id} data={post} />
         }) : <h1 style={{color: 'var(--gray)', display: 'flex', justifyContent: "center", alignItems: "center", marginTop: '100px'}}>{profilePage? "Your": "The"} posts will be shown here</h1>
       }
     </div>

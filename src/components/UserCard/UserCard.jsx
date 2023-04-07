@@ -31,10 +31,10 @@ const UserCard = ({classes, user}) => {
         unfollowThisUser()
     }
   return (
-    <div className={classes.user}>
+    <div className={'user'}>
         <div>
-            <img src={user.profilePicture || Profile} className={classes.userImg} />
-            <div className={classes.name} >
+            <img src={user.profilePicture || Profile} className={'userImg'} />
+            <div className={'name'} >
                 <span>{user.firstName + ' ' + user.lastName}</span>
                 <span>{user.email}</span>
             </div>

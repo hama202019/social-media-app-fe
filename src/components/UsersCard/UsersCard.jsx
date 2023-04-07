@@ -3,6 +3,7 @@ import classes from './UsersCard.module.css'
 import FollowerCard from '../UserCard/UserCard'
 import { getAllUsers } from '../../api/userRequests'
 import { useSelector } from 'react-redux'
+import './UsersCard.css'
 
 const UsersCard = () => {
     const {_id} = useSelector(state => state.authReducer.authData)
@@ -16,11 +17,11 @@ const UsersCard = () => {
     }, [])
     
   return (
-    <div className={classes.UsersCard}>
-        <h3> People you may know </h3>
+    <div className={'UsersCard'}>
+        <h3 style={{textAlign: 'center'}}> People you may know </h3>
         {usersData.map( user => {
             return (
-                <FollowerCard key={user._id} user={user} classes={classes}/>
+                <FollowerCard key={user._id} user={user} />
             )
         })}
     </div>

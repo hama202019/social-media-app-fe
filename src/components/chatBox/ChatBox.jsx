@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Profile from '../../assets/img/profileImgPlaceHolder.png'
 import './ChatBox.css'
 import { useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import Input from 'react-input-emoji'
 import { io } from 'socket.io-client'
 
 const ChatBox = ({currentChat}) => {
+    const bottomOfMessagesRef = useRef();
     const [messagesData, setMessagesData] = useState([])
     const [newMessage, setNewMessage] = useState('')
     const socket = io("http://localhost:4000");
@@ -20,11 +21,13 @@ const ChatBox = ({currentChat}) => {
     useEffect(() => {
         const getMessages = async () => {
             joinRoom(currentChat?.chatId)
-            console.log(currentChat?.chatId)
             const {data} = await fetchMessages(currentChat?.chatId)
             setMessagesData(data)
         }
         getMessages()
+        setTimeout(() => {
+            bottomOfMessagesRef.current?.scrollIntoView({behavior: "smooth"})
+        }, 300);
     }, [counter, currentChat])
 
     const handlePostMessage = async e => {
@@ -32,6 +35,7 @@ const ChatBox = ({currentChat}) => {
         await postMessage(currentChat?.chatId, authData._id, newMessage)
         socket.emit('sendMessage', {chatId: currentChat?.chatId, newMessage});
         setNewMessage('')
+        bottomOfMessagesRef.current?.scrollIntoView({behavior: "smooth"})
     }
   return (
     <div className="ChatBox">
@@ -42,14 +46,16 @@ const ChatBox = ({currentChat}) => {
         <hr style={{width: '100%', fontWeight: 'lighter'}}/>
         <div className="messages">
             {messagesData.map(message => {
-                return <div key={message._id} className={message.senderId === authData._id ? 'myMessage' : 'hisMessage'}>
+                return <div key={message._id} ref={bottomOfMessagesRef} className={message.senderId === authData._id ? 'myMessage' : 'hisMessage'}>
                     <span>{message.messageContent}</span>
                     <span>{format(message.createdAt)}</span>
                 </div>
             })}
+            {/* <div ref={bottomOfMessagesRef} /> */}
         </div>
         <div className="inputBox">
             <Input
+                clearOnEnter={false}
                 value={newMessage} 
                 onChange={setNewMessage}
             />

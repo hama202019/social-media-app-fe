@@ -13,6 +13,7 @@ import { io } from 'socket.io-client'
 import { findChat, getUserChats } from '../../api/chatRequests'
 import { retrievingChatsSuccess } from '../../actions/chatActions'
 import NavIcons from '../../components/navIcons/NavIcons'
+import { updatingSuccess } from '../../actions/userActions'
 
 const User = ({user}) => {
     const {userID} = useParams()
@@ -46,10 +47,10 @@ const User = ({user}) => {
     const handleFollow = () => {   
         const followThisUser = async () => {
             try {
-                const {data} = await followUser(user._id, {_id})
+                const {data} = await followUser(userData._id, _id)
                 dispatch(updatingSuccess(data))
             } catch (error) {
-                dispatch(updatingFail(error.response.data.message))
+                console.log(error)
             }
         }
         followThisUser()
@@ -57,10 +58,10 @@ const User = ({user}) => {
     const handleUnFollow = () => {
         const unfollowThisUser = async () => {
             try {
-                const {data} = await unfollowUser(user._id, {_id})
+                const {data} = await unfollowUser(userData._id, _id)
                 dispatch(updatingSuccess(data))
             } catch (error) {
-                dispatch(updatingFail(error.response.data.message))
+                console.log(error)
             }
         }
         unfollowThisUser()

@@ -1,0 +1,36 @@
+.deletePopup {
+    max-width: 60%;
+    width: 30%;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    justify-content: space-between;
+    height: 20vh;
+    background-color: var(--cardColor);
+    padding: 1rem 1rem;
+}
+
+.deletePopup button {
+    border: none;
+    padding: 1rem 2rem;
+    bottom: 0;
+    border-radius: .4rem;
+    color: var(--black);
+}
+
+.deletePopup div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.deletePopup button:nth-of-type(2){ 
+    background: var(--buttonBg);
+}
+
+.deletePopup button:hover {
+    background: var(--black);
+    color: #f3f3f3;
+  }

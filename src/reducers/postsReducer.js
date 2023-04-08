@@ -14,6 +14,8 @@ const reducer = (state = { postsData: [], loading: false, error: false, errMsg: 
             return {...state, errMsg: action.payload.errMsg, error: true, loading: false}
         case "LIKE_POST":
             return {...state, postsData: [...state.postsData.filter(post => post._id !== action.payload.postId), action.payload.newPost]}
+        case "DELETE_POST":
+            return {...state, postsData: [...state.postsData.filter(post => post._id != action.payload.postId)]}
         default:
             return state
     }

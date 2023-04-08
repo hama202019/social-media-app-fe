@@ -57,6 +57,7 @@ const SharePosts = () => {
           dispatch(postsActions.uploadingFail(e.response.data.error))
       }
     }  
+    console.log("bla bla")
   }
 
   return (

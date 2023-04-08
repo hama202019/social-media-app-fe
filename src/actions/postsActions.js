@@ -41,3 +41,10 @@ export const likePostAction = (newPost, postId) => ({
         postId
     }
 })
+
+export const deletePostAction = postId => ({
+    type: "DELETE_POST",
+    payload: {
+        postId
+    }
+})

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Profile from '../../assets/img/profileImgPlaceHolder.png'
 import './ChatBox.css'
 import { useSelector } from 'react-redux'
@@ -45,7 +45,8 @@ const ChatBox = ({currentChat, chatPage}) => {
         </div>
         <hr style={{width: '100%', fontWeight: 'lighter'}}/>
         <div className="messages">
-            {messagesData.map(message => {
+            {!currentChat ? <h3>tap on a chat to start a conversation</h3> :
+            messagesData.map(message => {
                 return <div key={message._id} ref={bottomOfMessagesRef} className={message.senderId === authData._id ? 'myMessage' : 'hisMessage'}>
                     <span className={chatPage ? '': 'messageFontSizeInChatPage'}>{message.messageContent}</span>
                     <span className={chatPage ? 'date' : 'dateFontSizeInChatPage'}>{format(message.createdAt)}</span>

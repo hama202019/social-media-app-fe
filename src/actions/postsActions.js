@@ -33,3 +33,11 @@ export const uploadingFail = errMsg => ({
         errMsg
     }
 })
+
+export const likePostAction = (newPost, postId) => ({
+    type: "LIKE_POST",
+    payload: {
+        newPost,
+        postId
+    }
+})

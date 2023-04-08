@@ -1,12 +1,12 @@
 import React from 'react'
-import LogoSearch from '../SearchLogo/LogoSearch'
+import SearchBar from '../searchBar/SearchBar'
 import InfoCard from '../infoCard/InfoCard'
 import UsersCard from '../UsersCard/UsersCard'
 
 const ProfileLeft = () => {
   return (
     <div className='ProfileSide'>
-        <LogoSearch />
+        <SearchBar />
         <InfoCard />
         <UsersCard />
     </div>

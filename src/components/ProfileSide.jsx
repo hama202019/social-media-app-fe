@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoSearch from './SearchLogo/LogoSearch.jsx'
+import SearchBar from './searchBar/SearchBar.jsx'
 import './ProfileSide.css'
 import ProfileCard from './profileCard/ProfileCard.jsx'
 import UsersCard from './UsersCard/UsersCard.jsx'
@@ -7,7 +7,7 @@ import UsersCard from './UsersCard/UsersCard.jsx'
 const ProfileSide = () => {
   return (
     <div className='ProfileSide'>
-        <LogoSearch />
+        <SearchBar />
         <ProfileCard profilePage={false}/>
         <UsersCard />
     </div>

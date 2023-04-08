@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './LogoSearch.css'
+import './SearchBar.css'
 import Logo from '../../assets/img/logo.png'
-import {UilSearch} from '@iconscout/react-unicons'
 import { findUsers } from '../../api/userRequests'
 import SearchModal from '../searchModal/SearchModal'
+import { useSelector } from 'react-redux'
 
-const LogoSearch = ({chatPage}) => {
+const SearchBar = ({chatPage}) => {
   const [searchResults, setSearchResults] = useState([])
   const searchRef = useRef()
   const [searchModal, setSearchModal] = useState(false)
-
+  const {_id} = useSelector(state => state.authReducer.authData)
   const handleUserSearch = async e => {
     e.preventDefault()
     if(!searchRef.current.value) {
       return setSearchModal(false)
     }
-    const {data} = await findUsers(searchRef.current.value)
+    const {data} = await findUsers(searchRef.current.value, _id)
     setSearchResults(data)
     setSearchModal(true)
   }
@@ -25,7 +25,7 @@ const LogoSearch = ({chatPage}) => {
   }, [searchModal])
 
   return (
-    <div className='LogoSearch'>
+    <div className='SearchBar'>
         <img src={Logo} />
         <div className="search">
           <input type="text" ref={searchRef} placeholder='#Search' onChange={handleUserSearch}/>
@@ -38,4 +38,4 @@ const LogoSearch = ({chatPage}) => {
   )
 }
 
-export default LogoSearch
+export default SearchBar

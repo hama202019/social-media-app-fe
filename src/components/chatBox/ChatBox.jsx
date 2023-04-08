@@ -46,14 +46,15 @@ const ChatBox = ({currentChat, chatPage}) => {
         <hr style={{width: '100%', fontWeight: 'lighter'}}/>
         <div className="messages">
             {!currentChat ? <h3>tap on a chat to start a conversation</h3> :
+            messagesData.length ? 
             messagesData.map(message => {
                 return <div key={message._id} ref={bottomOfMessagesRef} className={message.senderId === authData._id ? 'myMessage' : 'hisMessage'}>
                     <span className={chatPage ? '': 'messageFontSizeInChatPage'}>{message.messageContent}</span>
                     <span className={chatPage ? 'date' : 'dateFontSizeInChatPage'}>{format(message.createdAt)}</span>
                 </div>
-            })}
+            }) : <h4 style={{color: 'lightGreen', textAlign: 'center'}}>the messages will go here <br/> <span style={{fontSize: '30px'}}>&#11015;</span></h4>}
         </div>
-        <div className="inputBox">
+        <div className="inputBox" style={{visibility: currentChat ? 'visible' : 'hidden'}}>
             <Input
                 clearOnEnter={false}
                 value={newMessage} 

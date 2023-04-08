@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Chat.css'
-import LogoSearch from '../../components/SearchLogo/LogoSearch'
+import SearchBar from '../../components/searchBar/SearchBar'
 import Chats from '../../components/chats/Chats'
 import { getUserChats } from '../../api/chatRequests'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,7 +24,7 @@ const Chat = () => {
   return (
     <div className="Chat">
         <div className="leftSide">
-            <LogoSearch />
+            <SearchBar />
             <div className="chats">
                 <h2>Chats</h2>
                 <div className="chatsList">

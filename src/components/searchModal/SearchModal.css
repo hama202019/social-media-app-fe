@@ -28,6 +28,11 @@
     align-items: center;
     padding: .1rem;
     width: 18rem;
+    border-radius: 1rem;
+}
+
+.userResult:hover {
+    background-color: var(--cardColor);
 }
 
 .resultsList a {

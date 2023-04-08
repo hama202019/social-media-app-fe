@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import { followUser, getUser, unfollowUser } from '../../api/userRequests'
 import Cover from '../../assets/img/coverPlaceHolder.png'
 import Profile from '../../assets/img/profileImgPlaceHolder.png'
-import LogoSearch from '../../components/SearchLogo/LogoSearch'
+import SearchBar from '../../components/searchBar/SearchBar'
 import UsersCard from '../../components/UsersCard/UsersCard'
 import './User.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -71,7 +71,7 @@ const User = ({user}) => {
         return (
             <div className="User">
                 <div className="ProfileSide userProfileSide">
-                    <LogoSearch />
+                    <SearchBar />
                     <div className="InfoCard">
                         <h4>User Info</h4>
                         <div className="info">

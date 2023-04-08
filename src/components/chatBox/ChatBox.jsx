@@ -7,7 +7,7 @@ import {format} from 'timeago.js'
 import Input from 'react-input-emoji'
 import { io } from 'socket.io-client'
 
-const ChatBox = ({currentChat}) => {
+const ChatBox = ({currentChat, chatPage}) => {
     const bottomOfMessagesRef = useRef();
     const [messagesData, setMessagesData] = useState([])
     const [newMessage, setNewMessage] = useState('')
@@ -47,11 +47,10 @@ const ChatBox = ({currentChat}) => {
         <div className="messages">
             {messagesData.map(message => {
                 return <div key={message._id} ref={bottomOfMessagesRef} className={message.senderId === authData._id ? 'myMessage' : 'hisMessage'}>
-                    <span>{message.messageContent}</span>
-                    <span>{format(message.createdAt)}</span>
+                    <span className={chatPage ? '': 'messageFontSizeInChatPage'}>{message.messageContent}</span>
+                    <span className={chatPage ? 'date' : 'dateFontSizeInChatPage'}>{format(message.createdAt)}</span>
                 </div>
             })}
-            {/* <div ref={bottomOfMessagesRef} /> */}
         </div>
         <div className="inputBox">
             <Input

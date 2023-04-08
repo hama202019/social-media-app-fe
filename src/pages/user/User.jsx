@@ -113,7 +113,7 @@ const User = ({user}) => {
                 </div>
                 <div className='messageUser'>
                     <NavIcons />
-                    <ChatBox currentChat={{...userData, ...userChat}} socket={socket}/>
+                    <ChatBox className='userChatBox' chatPage={false} currentChat={{...userData, ...userChat}} socket={socket}/>
                 </div>
             </div>
         )}

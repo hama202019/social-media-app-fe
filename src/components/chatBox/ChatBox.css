@@ -47,7 +47,7 @@
     flex-direction: column;
     padding: 5px;
 }
-.messages>div>span:nth-of-type(2){
+.date{
     font-size: 12px;
 }
 
@@ -60,4 +60,12 @@
 .inputBox button {
     height: 70%;
     padding: 0 15px;
+}
+
+.messageFontSizeInChatPage{
+    font-size: 14px;
+}
+
+.dateFontSizeInChatPage{
+    font-size: 8px;
 }

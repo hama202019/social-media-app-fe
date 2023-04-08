@@ -12,7 +12,7 @@ const Chat = () => {
   const {_id} = useSelector(state => state.authReducer.authData)
   const [currentChat, setCurrentChat] = useState(null)
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const {data} = await getUserChats(_id)
@@ -36,7 +36,7 @@ const Chat = () => {
           <div style={{width: '20rem', alignSelf: 'flex-end'}}>
             <NavIcons className='navIcons'/>
           </div>
-          <ChatBox currentChat={currentChat}/>
+          <ChatBox chatPage={true} currentChat={currentChat}/>
         </div>
     </div>
   )

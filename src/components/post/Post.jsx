@@ -30,7 +30,7 @@ const Post = ({data, profilePage}) => {
         {data.image && <img src={data.image} />}
         <div className="postReact">
           <div>
-            <img src={data.likes.includes(_id) ? Heart : NotLike} onClick={handleLike} />
+            <img style={{cursor: 'pointer'}} src={data.likes.includes(_id) ? Heart : NotLike} onClick={handleLike} />
             <span style={{color: 'var(--gray)', fontSize: '12px'}}>{data.likes.length} likes</span>
           </div>
           {profilePage && <UilTrashAlt onClick={handleDelete} className='trash' />}

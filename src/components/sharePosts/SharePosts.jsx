@@ -12,12 +12,11 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import * as postsAPI from '../../api/postRequests'
 import * as postsActions from '../../actions/postsActions'
 
-const SharePosts = () => {
+const SharePosts = ({setOpenModal}) => {
   const [img, setImg] = useState(null)
   const imgInputRef = useRef()
   const dispatch = useDispatch()
   const desc = useRef()
-  const [upload, setUpload] = useState(null)
   const user = useSelector(state => state.authReducer.authData)
 
   const imgHandler = (e) => {
@@ -32,13 +31,14 @@ const SharePosts = () => {
     if(img){
       const newImgRef = ref(storage, `images/${user._id}${img.name}`)
       dispatch(postsActions.startUploading())
-      const uploadTask = uploadBytesResumable(newImgRef, img).then( snapShot => {
+      uploadBytesResumable(newImgRef, img).then( snapShot => {
         getDownloadURL(newImgRef).then( async url => {
           const newPost = {userId : user._id, desc: desc.current.value, image: url, ref: JSON.stringify(newImgRef), userName: `${user.firstName} ${user.lastName}`}
           try {
             const post = await postsAPI.post(newPost)
             dispatch(postsActions.uploadingSuccess(post.data))
             setImg(null)
+            setOpenModal(false)
             desc.current.value = ''
           } catch (e) {
             if(e.response)
@@ -49,15 +49,15 @@ const SharePosts = () => {
     } else {
       dispatch(postsActions.startUploading())
       try {
-        const post = await postsAPI.post({userId: user._id, desc: desc.current.value, userName: `${firstName} ${lastName}`})
+        const post = await postsAPI.post({userId: user._id, desc: desc.current.value, userName: `${user.firstName} ${user.lastName}`})
         dispatch(postsActions.uploadingSuccess(post.data))
         desc.current.value = ''
+        setOpenModal(false)
       } catch (e) {
         if(e.response)
           dispatch(postsActions.uploadingFail(e.response.data.error))
       }
-    }  
-    console.log("bla bla")
+    }
   }
 
   return (

@@ -30,8 +30,8 @@ const Posts = ({profilePage, id}) => {
   return (
     <div className="Posts">
         {postsData.length ? 
-        postsData.map( post => {
-            return <Post key={post._id} data={post} profilePage={profilePage} />
+        postsData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map(post => {
+          return <Post key={post._id} data={post} profilePage={profilePage} />;
         }) : <h1 style={{color: 'var(--gray)', display: 'flex', justifyContent: "center", alignItems: "center", marginTop: '100px'}}>{profilePage? "Your": "The"} posts will be shown here</h1>
       }
     </div>

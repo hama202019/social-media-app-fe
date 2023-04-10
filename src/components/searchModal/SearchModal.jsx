@@ -1,6 +1,7 @@
 import React from 'react'
 import './SearchModal.css'
 import { Link } from 'react-router-dom'
+import Profile from '../../assets/img/profileImgPlaceHolder.png'
 
 
 const SearchModal = ({searchModal, searchResults, setSearchModal}) => {

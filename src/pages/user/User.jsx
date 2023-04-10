@@ -109,7 +109,7 @@ const User = ({user}) => {
                             <span>{userData.about || ""}</span>
                         </div>
                     </div>
-                    <Posts profilePage={false} id={userID}/>
+                    <Posts profilePage={false} userPage={true} id={userID}/>
                 </div>
                 <div className='messageUser'>
                     <NavIcons />

@@ -6,7 +6,7 @@ import Post from '../post/Post'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
-const Posts = ({profilePage, id}) => {
+const Posts = ({profilePage, id, userPage}) => {
   
   const dispatch = useDispatch()
   useEffect(() => {
@@ -23,7 +23,7 @@ const Posts = ({profilePage, id}) => {
     getData()
   }, [])
   let {postsData} = useSelector(state => state.postsReducer)
-  if(profilePage) {
+  if(profilePage || userPage) {
     postsData = postsData.filter(post => post.userId === id)
   }
 
